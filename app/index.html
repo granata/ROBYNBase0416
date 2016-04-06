@@ -2,10 +2,10 @@
 <html lang="en" ng-app="451order" ng-controller="Four51Ctrl">
 <head>
 	<!--baseTagToken-->
-	<!--headscriptToken-->
+    <!--headscriptToken-->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>{{user.Company.Name}} | Powered by ROBYN</title>
+    <title>SPNC Company Store | Powered by ROBYN</title>
 	<link rel="stylesheet" href="css/bootstrap-451.css" data-group="source" />
 	<link rel="stylesheet" href="css/editor.css" data-group="source" />
 	<link rel="stylesheet" href="css/custom.css" data-group="source" />
@@ -16,19 +16,41 @@
     <!--customfont (gotham alternative)-->
     <link rel="stylesheet" href="css/animate.min.css" />
       <link rel="stylesheet" href="https://d345spfe4d65od.cloudfront.net/static/tourmyapp/v1/tourmyapp.css" type="text/css">
+      
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js" data-group="cdn"></script>
+      <script>
+    $(document).ready(function(){
+        $(".navbar-collapse").collapse('hide');
+        $(document).click(function(event) {
+            if (!$(event.target).is('#navbar *, #navbar')){
+                $(".navbar-collapse").collapse('hide');
+            }
+        });
+    }); 
+</script>
+
+    <script type="text/javascript" charset="UTF-8" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body ng-cloak ng-class="ng-cloak">
 <section>
     <section ng-hide="Four51User.isAuthenticated() || isAnon" class="container">
-        <login />
-    </section>
-    <section ng-show="Four51User.isAuthenticated()" id="content">
+           <login />
+       </section>
+       <section ng-show="Four51User.isAuthenticated()" id="content">
         <section class="hidden-print">
             <navigation />
         </section>
-        <!--<section class="hidden-print">
+        <section class="hidden-print">
+            <div class="center-logo hidden-xs">
+            	<a href="catalog">
+            	    <img ng-src="{{user.Company.LogoUrl}}" />
+            	</a>
+            </div>
+            <categorynav tree="tree"></categorynav>
+        </section>
+        <section class="hidden-print">
             <branding />
-        </section>-->
+        </section>
         <section class="container-view">
             <ng-view autoscroll />
         </section>
@@ -43,7 +65,9 @@
 <!--fixedfooter-->
 
     <!--<script type="text/javascript" src="//dl1d2m8ri9v3j.cloudfront.net/releases/1.2.4/tracker.js" data-customer="bfec7bded14d43a7ace2697594e1369d"></script>-->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js" data-group="cdn"></script>
+    <!--
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js" data-group="cdn"></script> -->
+    
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js" data-group="cdn"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-sanitize.min.js" data-group="cdn"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-cookies.min.js" data-group="cdn"></script>
@@ -52,6 +76,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-route.min.js" data-group="cdn"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-touch.min.js" data-group="cdn"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-loader.min.js" data-group="cdn"></script>
+    <script src="//cdn.ckeditor.com/4.4.7/basic/ckeditor.js" data-group="cdn"></script>	
 
     <script src="lib/store.js" data-group="resources"></script>
     <script src="lib/ordercloud-specforms.js" data-group="resources"></script>
@@ -66,7 +91,8 @@
 
 	<script src="lib/oc/ordercloud-specforms.js" data-group="resources"></script>
 	<script src="lib/oc/ProductSearchInput.js" data-group="resources"></script>
-	<script src="//cdn.ckeditor.com/4.4.7/basic/ckeditor.js" data-group="cdn"></script>	
+	<script src="lib/oc/carousel.js" data-group="resources"></script>
+	<script src="lib/oc/categoryNav.js" data-group="resources"></script>
 	
     <script src="//maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
 
@@ -109,6 +135,7 @@
     <script src="js/controllers/securityCtrl.js" data-group="source"></script>
     <script src="js/controllers/orderTypeSelectorCtrl.js" data-group="source"></script>
     <script src="js/controllers/reportViewCtrl.js" data-group="source"></script>
+    <script src="js/controllers/cardUserEditCtrl.js" data-group="source"></script>
 
     <script src="js/interceptors.js" data-group="source"></script>
     <script src="js/services/errorService.js" data-group="source"></script>
@@ -139,8 +166,9 @@
     <script src="js/services/whiteLabelService.js" data-group="source"></script>
     <script src="js/services/XLATTables.js" data-group="source"></script>
     <script src="js/services/XLATService.js" data-group="source"></script>
-    <script src="js/services/googleAnalytics.js" data-group="source"></script>
-
+    
+    <script src="js/services/gaService.js" data-group="source"></script>
+    
     <script src="js/factories/fileReader.js" data-group="source"></script>
 
     <script src="js/directives/match.js" data-group="source"></script>
